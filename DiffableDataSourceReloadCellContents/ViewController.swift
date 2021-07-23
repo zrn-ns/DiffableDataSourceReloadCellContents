@@ -36,41 +36,42 @@ class ViewController: UIViewController {
         let fruitId: UUID
     }
 
-    private struct Fruit {
+    private class Fruit {
+        let id: UUID
         var name: String
         var isFavorite: Bool
 
-        init(name: String, isFavorite: Bool) {
+        init(id: UUID, name: String, isFavorite: Bool) {
+            self.id = id
             self.name = name
             self.isFavorite = isFavorite
         }
 
-        mutating func toggleFavorite() {
+        func toggleFavorite() {
             isFavorite = !isFavorite
         }
     }
 
-    private var fruits: [UUID: Fruit] = [.init(): .init(name: "Grape Fruits", isFavorite: false),
-                                         .init(): .init(name: "Orange", isFavorite: false),
-                                         .init(): .init(name: "Cabos", isFavorite: false),
-                                         .init(): .init(name: "Citron", isFavorite: true),
-                                         .init(): .init(name: "Lime", isFavorite: false),
-                                         .init(): .init(name: "Bergamot", isFavorite: false),
-                                         .init(): .init(name: "Iyokan Orange", isFavorite: false),
-                                         .init(): .init(name: "Dekopon", isFavorite: false)] {
+    private var fruits: [Fruit] = [.init(id: .init(), name: "Grape Fruits", isFavorite: false),
+                                   .init(id: .init(), name: "Orange", isFavorite: false),
+                                   .init(id: .init(), name: "Cabos", isFavorite: false),
+                                   .init(id: .init(), name: "Citron", isFavorite: true),
+                                   .init(id: .init(), name: "Lime", isFavorite: false),
+                                   .init(id: .init(), name: "Bergamot", isFavorite: false),
+                                   .init(id: .init(), name: "Iyokan Orange", isFavorite: false),
+                                   .init(id: .init(), name: "Dekopon", isFavorite: false)] {
         didSet {
             updateDataSource()
         }
     }
 
     private var items: [Item] {
-        fruits.sorted(by: { $0.value.name < $1.value.name })
-            .map { Item(fruitId: $0.key) }
+        fruits.sorted(by: { $0.name < $1.name })
+            .map { Item(fruitId: $0.id) }
     }
 
     private lazy var collectionViewDataSource: UICollectionViewDiffableDataSource<Section, Item> = .init(collectionView: collectionView) { [weak self] (collectionView: UICollectionView, indexPath: IndexPath, item: Item) -> UICollectionViewCell? in
-        guard let _self = self,
-              let fruit = _self.fruits[item.fruitId] else { return nil }
+        guard let fruit = self?.fruits.first(where: { $0.id == item.fruitId }) else { return nil }
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FruitCell", for: indexPath) as! FruitCell
         cell.viewModel = .init(name: fruit.name, isFavorite: fruit.isFavorite)
@@ -98,11 +99,11 @@ class ViewController: UIViewController {
         collectionViewDataSource.apply(snapshot, animatingDifferences: true)
     }
 
-    // セルのインスタンスは更新せず、中身だけ更新する
+    // セルのインスタンスは更新せず、セルの中身だけ更新する
     private func reloadContentsOfItem(item: Item) {
         guard let indexPath = collectionViewDataSource.indexPath(for: item),
               let cell = collectionView.cellForItem(at: indexPath) as? FruitCell,
-              let fruit = fruits[item.fruitId] else { return }
+              let fruit = fruits.first(where: { $0.id == item.fruitId }) else { return }
         cell.viewModel = .init(name: fruit.name,
                                isFavorite: fruit.isFavorite)
     }
@@ -111,7 +112,7 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let itemTapped = collectionViewDataSource.itemIdentifier(for: indexPath) {
-            fruits[itemTapped.fruitId]?.toggleFavorite()
+            fruits.first(where: { $0.id == itemTapped.fruitId })?.toggleFavorite()
             reloadContentsOfItem(item: itemTapped)
         }
     }
