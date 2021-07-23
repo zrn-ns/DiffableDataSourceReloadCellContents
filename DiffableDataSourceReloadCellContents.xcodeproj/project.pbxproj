@@ -13,6 +13,8 @@
 		749D609126AA44A4002D044C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749D608F26AA44A4002D044C /* Main.storyboard */; };
 		749D609326AA44A4002D044C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 749D609226AA44A4002D044C /* Assets.xcassets */; };
 		749D609626AA44A4002D044C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 749D609426AA44A4002D044C /* LaunchScreen.storyboard */; };
+		749D609F26AA4B31002D044C /* FruitCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 749D609E26AA4B31002D044C /* FruitCell.xib */; };
+		749D60A326AA4C2F002D044C /* FruitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749D60A226AA4C2F002D044C /* FruitCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		749D609226AA44A4002D044C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		749D609526AA44A4002D044C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		749D609726AA44A4002D044C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		749D609E26AA4B31002D044C /* FruitCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FruitCell.xib; sourceTree = "<group>"; };
+		749D60A226AA4C2F002D044C /* FruitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		749D608826AA44A4002D044C /* DiffableDataSourceReloadCellContents */ = {
 			isa = PBXGroup;
 			children = (
+				749D609D26AA4B22002D044C /* Cell */,
 				749D608926AA44A4002D044C /* AppDelegate.swift */,
 				749D608B26AA44A4002D044C /* SceneDelegate.swift */,
 				749D608D26AA44A4002D044C /* ViewController.swift */,
@@ -65,6 +70,15 @@
 				749D609726AA44A4002D044C /* Info.plist */,
 			);
 			path = DiffableDataSourceReloadCellContents;
+			sourceTree = "<group>";
+		};
+		749D609D26AA4B22002D044C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				749D609E26AA4B31002D044C /* FruitCell.xib */,
+				749D60A226AA4C2F002D044C /* FruitCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +138,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				749D609F26AA4B31002D044C /* FruitCell.xib in Resources */,
 				749D609626AA44A4002D044C /* LaunchScreen.storyboard in Resources */,
 				749D609326AA44A4002D044C /* Assets.xcassets in Resources */,
 				749D609126AA44A4002D044C /* Main.storyboard in Resources */,
@@ -137,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				749D60A326AA4C2F002D044C /* FruitCell.swift in Sources */,
 				749D608E26AA44A4002D044C /* ViewController.swift in Sources */,
 				749D608A26AA44A4002D044C /* AppDelegate.swift in Sources */,
 				749D608C26AA44A4002D044C /* SceneDelegate.swift in Sources */,
