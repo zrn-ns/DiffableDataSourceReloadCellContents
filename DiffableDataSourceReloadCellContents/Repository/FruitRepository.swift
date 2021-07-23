@@ -31,4 +31,18 @@ final class FruitRepository {
             _fruits = tmpFruits
         }
     }
+
+    init() {
+        // 一定時間おきにフルーツを追加する
+        Timer.publish(every: 5, on: .main, in: .default)
+            .autoconnect()
+            .sink { [weak self] _ in
+                guard let _self = self else { return }
+                _self._fruits.append(.init(id: UUID(), name: "Other Fruit \(_self._fruits.count)", isFavorite: false))
+            }.store(in: &cancellables)
+    }
+
+    // MARK: - private
+
+    private var cancellables: [AnyCancellable] = []
 }
