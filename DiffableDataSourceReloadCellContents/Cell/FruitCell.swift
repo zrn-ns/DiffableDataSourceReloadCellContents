@@ -23,6 +23,15 @@ class FruitCell: UICollectionViewCell {
         }
     }
 
+    func updateView() {
+        UIView.animate(withDuration: 0.2) {
+            self.nameLabel.text = self.viewModel.name
+            self.favoriteIconImageView.alpha = self.viewModel.isFavorite ? 1 : 0
+            self.backgroundColor = self.bgColor
+        }
+
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
 
@@ -33,10 +42,4 @@ class FruitCell: UICollectionViewCell {
 
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var favoriteIconImageView: UIImageView!
-
-    private func updateView() {
-        nameLabel.text = viewModel.name
-        favoriteIconImageView.isHidden = !viewModel.isFavorite
-        backgroundColor = bgColor
-    }
 }

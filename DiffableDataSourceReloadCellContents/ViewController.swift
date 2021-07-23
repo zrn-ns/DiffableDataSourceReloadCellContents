@@ -34,8 +34,31 @@ class ViewController: UIViewController {
 
     private struct FruitItem: Hashable {
         let id: UUID
-        var name: String
-        var isFavorite: Bool
+        let fruitInfo: FruitInfo
+
+        init(id: UUID, name: String, isFavorite: Bool) {
+            self.id = id
+            self.fruitInfo = .init(name: name, isFavorite: isFavorite)
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
+
+        public static func ==(lhs: FruitItem, rhs: FruitItem) -> Bool {
+            lhs.id == rhs.id
+                && lhs.fruitInfo === rhs.fruitInfo
+        }
+
+        class FruitInfo {
+            var name: String
+            var isFavorite: Bool
+
+            init(name: String, isFavorite: Bool) {
+                self.name = name
+                self.isFavorite = isFavorite
+            }
+        }
     }
 
     private var fruits: [FruitItem] = [.init(id: UUID(), name: "Grape Fruits", isFavorite: false),
@@ -53,7 +76,7 @@ class ViewController: UIViewController {
 
     private lazy var collectionViewDataSource: UICollectionViewDiffableDataSource<Section, FruitItem> = .init(collectionView: collectionView) { (collectionView: UICollectionView, indexPath: IndexPath, item: FruitItem) -> UICollectionViewCell? in
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FruitCell", for: indexPath) as! FruitCell
-        cell.viewModel = .init(name: item.name, isFavorite: item.isFavorite)
+        cell.viewModel = .init(name: item.fruitInfo.name, isFavorite: item.fruitInfo.isFavorite)
         return cell
     }
 
@@ -78,12 +101,19 @@ class ViewController: UIViewController {
         collectionViewDataSource.apply(snapshot, animatingDifferences: true)
     }
 
+    // セルのインスタンスは更新せず、中身だけ更新する
+    private func reloadContentsOfItem(item: FruitItem) {
+        guard let indexPath = collectionViewDataSource.indexPath(for: item),
+              let cell = collectionView.cellForItem(at: indexPath) as? FruitCell else { return }
+        cell.viewModel = .init(name: item.fruitInfo.name,
+                               isFavorite: item.fruitInfo.isFavorite)
+    }
 }
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var fruitTapped = fruits[indexPath.row]
-        fruitTapped.isFavorite = !fruitTapped.isFavorite
-        fruits[indexPath.row] = fruitTapped
+        let fruitTapped = fruits[indexPath.row]
+        fruits.filter({ $0 == fruitTapped }).forEach { $0.fruitInfo.isFavorite = !$0.fruitInfo.isFavorite }
+        reloadContentsOfItem(item: fruitTapped)
     }
 }
