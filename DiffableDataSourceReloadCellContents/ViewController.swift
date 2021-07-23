@@ -82,6 +82,8 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        #warning("情報を更新")
+        var fruitTapped = fruits[indexPath.row]
+        fruitTapped.isFavorite = !fruitTapped.isFavorite
+        fruits[indexPath.row] = fruitTapped
     }
 }
