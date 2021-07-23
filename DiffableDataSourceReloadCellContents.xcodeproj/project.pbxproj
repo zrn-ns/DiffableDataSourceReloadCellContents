@@ -68,12 +68,11 @@
 			children = (
 				749F714526AA9EC1005F9362 /* Model */,
 				749D60A626AA86AE002D044C /* Repository */,
-				749D609D26AA4B22002D044C /* Cell */,
+				749D609D26AA4B22002D044C /* Views */,
 				749D608926AA44A4002D044C /* AppDelegate.swift */,
 				749D608B26AA44A4002D044C /* SceneDelegate.swift */,
 				749D608D26AA44A4002D044C /* ViewController.swift */,
 				749D608F26AA44A4002D044C /* Main.storyboard */,
-				749F714326AA9E47005F9362 /* FruitsListView.swift */,
 				749D609226AA44A4002D044C /* Assets.xcassets */,
 				749D609426AA44A4002D044C /* LaunchScreen.storyboard */,
 				749D609726AA44A4002D044C /* Info.plist */,
@@ -81,13 +80,14 @@
 			path = DiffableDataSourceReloadCellContents;
 			sourceTree = "<group>";
 		};
-		749D609D26AA4B22002D044C /* Cell */ = {
+		749D609D26AA4B22002D044C /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				749D609E26AA4B31002D044C /* FruitCell.xib */,
 				749D60A226AA4C2F002D044C /* FruitCell.swift */,
+				749F714326AA9E47005F9362 /* FruitsListView.swift */,
 			);
-			path = Cell;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		749D60A626AA86AE002D044C /* Repository */ = {
