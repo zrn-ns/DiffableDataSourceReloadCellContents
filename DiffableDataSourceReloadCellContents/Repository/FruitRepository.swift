@@ -10,7 +10,7 @@ import Foundation
 
 final class FruitRepository {
 
-    class Fruit {
+    struct Fruit: Equatable {
         let id: UUID
         var name: String
         var isFavorite: Bool
@@ -21,7 +21,7 @@ final class FruitRepository {
             self.isFavorite = isFavorite
         }
 
-        func toggleFavorite() {
+        mutating func toggleFavorite() {
             isFavorite = !isFavorite
         }
     }
@@ -38,6 +38,13 @@ final class FruitRepository {
                                                .init(id: .init(), name: "Dekopon", isFavorite: false)]
 
     func toggleFavorite(of fruit: Fruit) {
-        _fruits.first(where: { $0.id == fruit.id })?.toggleFavorite()
+        if let index = _fruits.firstIndex(of: fruit) {
+            var tmpFruits = _fruits
+            tmpFruits.remove(at: index)
+            tmpFruits.append(.init(id: fruit.id,
+                                   name: fruit.name,
+                                   isFavorite: !fruit.isFavorite))
+            _fruits = tmpFruits
+        }
     }
 }
