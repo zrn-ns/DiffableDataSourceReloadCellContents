@@ -9,13 +9,13 @@ import UIKit
 
 class FruitsListView: UIView {
 
-    var fruits: [FruitRepository.Fruit] = [] {
+    var fruits: [Fruit] = [] {
         didSet {
             updateDataSource()
         }
     }
 
-    var didSelectFruitHandler: ((FruitRepository.Fruit) -> Void)?
+    var didSelectFruitHandler: ((Fruit) -> Void)?
 
     required init?(coder: NSCoder) {
         collectionView = UICollectionView.init(frame: .zero, collectionViewLayout: Self.createLayout())

@@ -10,22 +10,6 @@ import Foundation
 
 final class FruitRepository {
 
-    struct Fruit: Equatable {
-        let id: UUID
-        var name: String
-        var isFavorite: Bool
-
-        init(id: UUID, name: String, isFavorite: Bool) {
-            self.id = id
-            self.name = name
-            self.isFavorite = isFavorite
-        }
-
-        mutating func toggleFavorite() {
-            isFavorite = !isFavorite
-        }
-    }
-
     lazy var fruits: AnyPublisher<[Fruit], Never> = $_fruits.eraseToAnyPublisher()
 
     @Published private var _fruits: [Fruit] = [.init(id: .init(), name: "Grape Fruits", isFavorite: false),

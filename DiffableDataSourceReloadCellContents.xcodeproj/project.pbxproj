@@ -17,6 +17,7 @@
 		749D60A326AA4C2F002D044C /* FruitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749D60A226AA4C2F002D044C /* FruitCell.swift */; };
 		749D60A526AA86A9002D044C /* FruitRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749D60A426AA86A9002D044C /* FruitRepository.swift */; };
 		749F714426AA9E47005F9362 /* FruitsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F714326AA9E47005F9362 /* FruitsListView.swift */; };
+		749F714726AA9ECB005F9362 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749F714626AA9ECB005F9362 /* Fruit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		749D60A226AA4C2F002D044C /* FruitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitCell.swift; sourceTree = "<group>"; };
 		749D60A426AA86A9002D044C /* FruitRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitRepository.swift; sourceTree = "<group>"; };
 		749F714326AA9E47005F9362 /* FruitsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitsListView.swift; sourceTree = "<group>"; };
+		749F714626AA9ECB005F9362 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		749D608826AA44A4002D044C /* DiffableDataSourceReloadCellContents */ = {
 			isa = PBXGroup;
 			children = (
+				749F714526AA9EC1005F9362 /* Model */,
 				749D60A626AA86AE002D044C /* Repository */,
 				749D609D26AA4B22002D044C /* Cell */,
 				749D608926AA44A4002D044C /* AppDelegate.swift */,
@@ -93,6 +96,14 @@
 				749D60A426AA86A9002D044C /* FruitRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		749F714526AA9EC1005F9362 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				749F714626AA9ECB005F9362 /* Fruit.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +181,7 @@
 				749D60A326AA4C2F002D044C /* FruitCell.swift in Sources */,
 				749D608E26AA44A4002D044C /* ViewController.swift in Sources */,
 				749D608A26AA44A4002D044C /* AppDelegate.swift in Sources */,
+				749F714726AA9ECB005F9362 /* Fruit.swift in Sources */,
 				749D608C26AA44A4002D044C /* SceneDelegate.swift in Sources */,
 				749F714426AA9E47005F9362 /* FruitsListView.swift in Sources */,
 			);
