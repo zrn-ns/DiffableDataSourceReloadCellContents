@@ -74,6 +74,8 @@ class ViewController: UIViewController {
         snapshot.appendItems(items)
 
         collectionViewDataSource.apply(snapshot, animatingDifferences: true)
+
+        items.forEach({ reloadContentsOfItem(item: $0) })
     }
 
     // セルのインスタンスは更新せず、セルの中身だけ更新する
@@ -101,7 +103,6 @@ extension ViewController: UICollectionViewDelegate {
            let fruit = fruits.first(where: { $0.id == itemTapped.fruitId }) {
 
             repository.toggleFavorite(of: fruit)
-            reloadContentsOfItem(item: itemTapped)
         }
     }
 }
