@@ -23,11 +23,14 @@ final class FruitRepository {
 
     func toggleFavorite(of fruit: Fruit) {
         if let index = _fruits.firstIndex(of: fruit) {
+            let updatedFruit: Fruit = {
+                var tmpFruit = fruit
+                tmpFruit.toggleFavorite()
+                return tmpFruit
+            }()
             var tmpFruits = _fruits
             tmpFruits.remove(at: index)
-            tmpFruits.append(.init(id: fruit.id,
-                                   name: fruit.name,
-                                   isFavorite: !fruit.isFavorite))
+            tmpFruits.append(updatedFruit)
             _fruits = tmpFruits
         }
     }
